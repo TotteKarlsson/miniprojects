@@ -13,7 +13,6 @@ class MyObject
 
     private:
         string          label;
-
 };
 
 class MyContainer

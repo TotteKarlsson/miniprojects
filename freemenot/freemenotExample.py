@@ -1,9 +1,9 @@
-import dsl
+import freemenot as fmn
 
 def getContainer():
-   c = dsl.MyContainer()
-   o1 = dsl.MyObject("This is a label")
-   o1.thisown = 1
+   c = fmn.MyContainer()
+   o1 = fmn.MyObject("This is a label")
+   o1.thisown = 0
    c.addObject(o1)
    return c
 
