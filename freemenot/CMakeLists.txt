@@ -24,6 +24,6 @@ ${THIRD_PARTY_INSTALL_PREFIX}/lib
 )
 
 #Source Code Folders
-add_subdirectory(Common)
+#add_subdirectory(Common)
 add_subdirectory(Wrappers)
 

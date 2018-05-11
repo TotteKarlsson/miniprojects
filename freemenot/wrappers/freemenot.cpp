@@ -1,5 +1,10 @@
 #include "freemenot.h"
 #include <iostream>
+
+//void _Unlocksyslock(int){return false;}
+//void _Locksyslock(int){return false;}
+
+
 using namespace std;
 MyObject::MyObject(const string& lbl)
 :
