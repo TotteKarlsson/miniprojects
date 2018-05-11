@@ -2,10 +2,9 @@
 #define freemenotH
 #include <vector>
 #include <string>
-#include "dslCommonExporter.h"
 
 using std::string;
-class DSL_COMMON MyObject
+class MyObject
 {
     public:
                         MyObject(const string& lbl);
@@ -17,7 +16,7 @@ class DSL_COMMON MyObject
 
 };
 
-class DSL_COMMON MyContainer
+class MyContainer
 {
     public:
                     MyContainer();

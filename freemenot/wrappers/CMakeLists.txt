@@ -8,38 +8,27 @@ message("Python lib folder: " ${PYTHON_LIB_FOLDER})
 message("Python include folder: " ${PYTHON_INCLUDE_DIRS})
 message("Python libraries: " ${PYTHON_LIBRARIES})
 
+set(PyModule "freemenot")
 include_directories(
     .
     ${PYTHON_INCLUDE_PATH}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${DSL_ROOT}/Common
 )
 
-link_directories(
-${CMAKE_BINARY_DIR}/lib
-${PYTHON_LIB_FOLDER}
-)
+link_directories( ${PYTHON_LIB_FOLDER})
 
 
-message("Lib folder: " ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_MODULE_LINKER_FLAGS ${CMAKE_CURRENT_SOURCE_DIR}/${PyModule}.def)
 
-set(CMAKE_MODULE_LINKER_FLAGS ${CMAKE_CURRENT_SOURCE_DIR}/dsl.def)
+set_source_files_properties(${PyModule}.i PROPERTIES CPLUSPLUS ON)
+set_source_files_properties(${PyModule}.i PROPERTIES SWIG_FLAGS "-threads")
 
-if(BORLAND)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w-8105")
-    set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}")
-endif(BORLAND)
-
-set_source_files_properties(dsl.i PROPERTIES CPLUSPLUS ON)
-set_source_files_properties(dsl.i PROPERTIES SWIG_FLAGS "-threads")
-
-SWIG_ADD_LIBRARY(dsl
+SWIG_ADD_LIBRARY(${PyModule}
     MODULE LANGUAGE python 
-    SOURCES dsl.i freemenot.cpp)
+    SOURCES ${PyModule}.i freemenot.cpp)
     
-SWIG_LINK_LIBRARIES (dsl
+SWIG_LINK_LIBRARIES (${PyModule}
     ${PYTHON_LIB_FOLDER}/Python37_CG.lib    
-    ${PYTHON_LIB_FOLDER}/Python3_CG.lib    
 )
 
 # INSTALL PYTHON BINDINGS
@@ -48,11 +37,10 @@ execute_process(COMMAND python -c "import site; print(site.getsitepackages()[0])
 message("PYTHON_SITE_PACKAGES = ${PYTHON_SITE_PACKAGES}")
 
 install(
-    TARGETS _dsl
+    TARGETS _${PyModule}
     DESTINATION ${PYTHON_SITE_PACKAGES})
 
 install(
-    FILES         ${CMAKE_CURRENT_BINARY_DIR}/dsl.py 
-                  ${CMAKE_BINARY_DIR}/lib/_dsl.tds
+    FILES         ${CMAKE_CURRENT_BINARY_DIR}/${PyModule}.py 
     DESTINATION   ${PYTHON_SITE_PACKAGES}
 )
