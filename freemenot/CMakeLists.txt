@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 project(freemenot)
-
 find_package(SWIG REQUIRED)
 include(UseSWIG)
 find_package(PythonInterp)

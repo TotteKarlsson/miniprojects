@@ -4,37 +4,62 @@
 #include <string>
 
 using std::string;
+#if defined (_WIN32)
+//     #if defined(EXPORT_DLL)
+//         #define MyExport __declspec(dllexport)
+//     #else
+//         #define MyExport __declspec(dllimport)
+//     #endif
+// #else
+    #define MyExport
+#endif    
 
 namespace mine
 {
 
-class MyObject
+class MyExport TObject
+{
+
+};
+
+class MyExport MyObjectBase : public TObject
 {
     public:
-                        MyObject(const string& lbl);
-                        ~MyObject();
+                        MyObjectBase(const string& lbl);
+                        ~MyObjectBase();
         string          getLabel();
 
     private:
         string          label;
 };
 
-class MyContainer
+class MyExport MyDerived : public MyObjectBase
 {
     public:
-                    MyContainer();
-                    ~MyContainer();
-        void        addObject(mine::MyObject* o);
-        MyObject*   getObject(unsigned int t);
-        int         getNrOfObjects();
+                        MyDerived() : MyObjectBase("Derived"){}
+                        ~MyDerived(){}
+};
+
+template<class T>
+class MyTemplateDerived : public MyObjectBase
+{
+    public:
+                        MyTemplateDerived<T>() : MyObjectBase("TemplateDerived"){}
+
+};
+
+class MyExport MyContainer : public TObject
+{
+    public:
+                        MyContainer();
+                        ~MyContainer();
+        void            add(mine::MyObjectBase* o);
+        MyObjectBase*   getObject(unsigned int t);
+        int             getNrOfObjects();
 
     private:
-        std::vector<MyObject*>   mObjects;
+        std::vector<MyObjectBase*>   mObjects;
 };
 
 }
 #endif
-
-
-
-

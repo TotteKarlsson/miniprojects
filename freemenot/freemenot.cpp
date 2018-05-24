@@ -5,20 +5,20 @@ using namespace std;
 namespace mine
 {
 
-/* MyObject source */
-MyObject::MyObject(const string& lbl)
+/* MyObjectBase source */
+MyObjectBase::MyObjectBase(const string& lbl)
 :
 label(lbl)
 {
     cout<<"In object ctor"<<endl;
 }
 
-MyObject::~MyObject()
+MyObjectBase::~MyObjectBase()
 {
     cout<<"In object dtor"<<endl;
 }
 
-string MyObject::getLabel()
+string MyObjectBase::getLabel()
 {
     return label;
 }
@@ -40,12 +40,12 @@ int MyContainer::getNrOfObjects()
     return mObjects.size();
 }
 
-void MyContainer::addObject(MyObject* o)
+void MyContainer::add(MyObjectBase* o)
 {
     mObjects.push_back(o);
 }
 
-MyObject* MyContainer::getObject(unsigned int i)
+MyObjectBase* MyContainer::getObject(unsigned int i)
 {
     return mObjects[i];
 }

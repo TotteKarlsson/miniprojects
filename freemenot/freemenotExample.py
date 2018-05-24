@@ -2,18 +2,26 @@ import freemenot as fmn
 
 def getContainer():
    c = fmn.MyContainer()
-   o1 = fmn.MyObject("This is a label")
+   o1 = fmn.MyObjectBase("This is a label")
    #o1.thisown = 0
-   c.addObject(o1)
+   o2 = fmn.MyDerived()
+   o3 = fmn.intObject()
+
+   c.add(o1)
+   c.add(o2)
+   c.add(o3)
    return c
 
-c = getContainer()
-print (c.getNrOfObjects())
+cont = getContainer()
+print (cont.getNrOfObjects())
 
-#if the thisown flag for objects in the getContainer function
-#is equal to 1, the following call return an undefined object
-#If the flag is equal to 0, the following call will return a valid object
-a = c.getObject(0)
+a = cont.getObject(0)
 print ("Label: " + a.getLabel())
+
+b = cont.getObject(1)
+print ("Label: " + b.getLabel())
+
+c = cont.getObject(2)
+print ("Label: " + c.getLabel())
 
 
