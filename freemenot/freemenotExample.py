@@ -3,7 +3,7 @@ import freemenot as fmn
 def getContainer():
    c = fmn.MyContainer()
    o1 = fmn.MyObject("This is a label")
-   o1.thisown = 0
+   #o1.thisown = 1
    c.addObject(o1)
    return c
 
