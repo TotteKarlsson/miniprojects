@@ -4,6 +4,10 @@
 #include <string>
 
 using std::string;
+
+namespace mine
+{
+
 class MyObject
 {
     public:
@@ -20,7 +24,7 @@ class MyContainer
     public:
                     MyContainer();
                     ~MyContainer();
-        void        addObject(MyObject* o);
+        void        addObject(mine::MyObject* o);
         MyObject*   getObject(unsigned int t);
         int         getNrOfObjects();
 
@@ -28,6 +32,7 @@ class MyContainer
         std::vector<MyObject*>   mObjects;
 };
 
+}
 #endif
 
 
