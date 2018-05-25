@@ -2,18 +2,14 @@
 #define freemenotH
 #include <vector>
 #include <string>
-#include "freemenotexporter.h"
+#include "myexporter.h"
+#include "MyObject.h"
 using std::string;
 
-namespace mine
+namespace dsl
 {
 
-class MyExport TObject
-{
-
-};
-
-class MyExport MyObjectBase : public TObject
+class MyExport MyObjectBase : public MyObject
 {
     public:
                         MyObjectBase(const string& lbl);
@@ -39,12 +35,12 @@ class MyTemplateDerived : public MyObjectBase
 
 };
 
-class MyExport MyContainer : public TObject
+class MyExport MyContainer : public MyObject
 {
     public:
                         MyContainer();
                         ~MyContainer();
-        void            add(mine::MyObjectBase* o);
+        void            add(dsl::MyObjectBase* o);
         MyObjectBase*   getObject(unsigned int t);
         int             getNrOfObjects();
 

@@ -8,6 +8,10 @@ link_directories(${CMAKE_BINARY_DIR}/lib)
 
 set(src
 freemenot
+BaseProperty
+Constants
+MyObject
+Properties
 )
 
 #===== Shared library

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-namespace mine
+namespace dsl
 {
 
 /* MyObjectBase source */

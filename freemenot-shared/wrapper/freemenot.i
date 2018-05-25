@@ -2,7 +2,7 @@
 
 %{
 #include "freemenot.h"
-using namespace mine;
+using namespace dsl;
 %}
  
 %include "std_string.i"
@@ -14,9 +14,10 @@ using namespace mine;
 %}
 
 #define MyExport 
+
 //Expose to Python
 %include "freemenot.h"
 
-%template(intObject)          mine::MyTemplateDerived<int>;
+%template(intObject)          dsl::MyTemplateDerived<int>;
 
 
