@@ -32,16 +32,16 @@ string Properties::getSection()
     return mSection;
 }
 
-void Properties::applyModifications()
-{
-    for(unsigned int i = 0; i < count(); i++)
-    {
-        if(mProperties[i]->isModified())
-        {
-            mProperties[i]->applyModification();
-        }
-    }
-}
+//void Properties::applyModifications()
+//{
+//    for(unsigned int i = 0; i < count(); i++)
+//    {
+//        if(mProperties[i]->isModified())
+//        {
+//            mProperties[i]->applyModification();
+//        }
+//    }
+//}
 
 bool Properties::isModified()
 {
@@ -63,41 +63,41 @@ void Properties::setUnmodified()
     }
 }
 
-BaseProperty* Properties::operator [](const string& label)
-{
-    //Search trough parameters for label
-    for(unsigned int i = 0; i < count(); i++)
-    {
-        if(mProperties[i]->getLabel() == label)
-        {
-            return mProperties[i];
-        }
-    }
-    return nullptr;
-}
+//BaseProperty* Properties::operator [](const string& label)
+//{
+//    //Search trough parameters for label
+//    for(unsigned int i = 0; i < count(); i++)
+//    {
+//        if(mProperties[i]->getLabel() == label)
+//        {
+//            return mProperties[i];
+//        }
+//    }
+//    return nullptr;
+//}
 
-BaseProperty* Properties::getProperty(const string& label)
-{
-    //find parameter usign its label
-    for(unsigned int i = 0; i < count(); i++)
-    {
-        if(mProperties[i]->getLabel() == label)
-        {
-            return mProperties[i];
-        }
-    }
-    return nullptr;
-}
-
-string Properties::getListing()
-{
-    stringstream paras_list;
-    for(unsigned int i = 0; i < count(); i++)
-    {
-        paras_list << setw(30)<<mProperties[i]->getLabel()<<"="<<mProperties[i]->getValueAsString()<<endl;
-    }
-    return paras_list.str();
-}
+//BaseProperty* Properties::getProperty(const string& label)
+//{
+//    //find parameter usign its label
+//    for(unsigned int i = 0; i < count(); i++)
+//    {
+//        if(mProperties[i]->getLabel() == label)
+//        {
+//            return mProperties[i];
+//        }
+//    }
+//    return nullptr;
+//}
+//
+//string Properties::getListing()
+//{
+//    stringstream paras_list;
+//    for(unsigned int i = 0; i < count(); i++)
+//    {
+//        paras_list << setw(30)<<mProperties[i]->getLabel()<<"="<<mProperties[i]->getValueAsString()<<endl;
+//    }
+//    return paras_list.str();
+//}
 
 bool Properties::read()
 {
@@ -114,11 +114,11 @@ unsigned int Properties::count()
 	return mProperties.size();
 }
 
-BaseProperty* Properties::operator [](int index)
-{
-	return mProperties[index];
-}
-
+//BaseProperty* Properties::operator [](int index)
+//{
+//	return mProperties[index];
+//}
+//
 void Properties::setSection(const string& sec)
 {
     mSection = sec;

@@ -14,7 +14,7 @@ class MyExport MyObjectBase : public MyObject
     public:
                         MyObjectBase(const string& lbl);
                         ~MyObjectBase();
-        string          getLabel();
+        virtual string  getLabel();
 
     private:
         string          label;

@@ -26,21 +26,21 @@ class MyExport Properties : public MyObject
         string                                              getSection();
         unsigned int                                        count();
 
-        BaseProperty*				                        operator [](int index);
-        BaseProperty*				                        operator [](const string& label);
+//        BaseProperty*				                        operator [](int index);
+//        BaseProperty*				                        operator [](const string& label);
 
         BaseProperty*				                        getProperty(int index);
-        BaseProperty*				                        getProperty(const string& paraLabel);
+//        BaseProperty*				                        getProperty(const string& paraLabel);
 
-        void                                                add(BaseProperty* para);
-        string                                              getListing();
+        void                                                add(dsl::BaseProperty* o);
+//        string                                              getListing();
 
         virtual bool                                        read();
         virtual bool                                        write();
 
         bool                                                isModified();
         void                                                setUnmodified();
-        void                                                applyModifications();
+//        void                                                applyModifications();
 		MyExport friend ostream&                          operator<<(ostream& stream, const Properties& p);
 
     protected:
@@ -55,17 +55,6 @@ MyExport string toString(const Properties& props);
 
 MyExport string getFormattedParStr(const string& str, const Properties& props);
 
-template<> inline
-bool Property<Properties>::write(IniFile* iniFile, const string& section)
-{
-    return false;
-}
-
-template<> inline
-bool Property<Properties>::read(dsl::IniFile* iniFile, const std::string& section)
-{
-    return false;
-}
 
 template<> inline
 bool Property<Properties>::assignValueFromString(const string& val)

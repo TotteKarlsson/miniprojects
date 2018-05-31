@@ -12,7 +12,7 @@ using std::string;
 using std::ostream;
 class IniFile;
 
-//abstract class for inifile parameters
+//Abstract class for inifile parameters
 //a non template base class allow us to store derived objects,
 //of any type, in a vector for example
 class MyExport BaseProperty : public MyObject
@@ -24,16 +24,18 @@ class MyExport BaseProperty : public MyObject
 
         //Interface
         virtual string                                  getINIRecord() {return string("Setup in baseclass!");}// = 0;
-        virtual bool                                    assignValueFromString(const string& val) = 0;
-        virtual string                                  getLabel() = 0;
-        virtual string                                  getValueAsString() const = 0;
+//        virtual bool                                    assignValueFromString(const string& val) = 0;
+        string                                      	getLabel()                                  {return mKey;}
+        void                                        	setLabel(const string& lbl)                 {mKey = lbl;}
+//        virtual string                                  getValueAsString() const = 0;
         virtual void*                                   getValueHandle() = 0;
-
-
-                                                        //Copy temporary value to real value
-        virtual void                                    applyModification() = 0;
+//
+//
+//                                                        //Copy temporary value to real value
+//        virtual void                                    applyModification() = 0;
 
         virtual const char*                             c_str() const;
+
         //Utilities
         bool					                        doReadFromINI();
         bool					                        wasRead();

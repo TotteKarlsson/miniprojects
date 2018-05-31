@@ -25,7 +25,7 @@ class Property : public BaseProperty
         void                                        resetToDefault()                            {*mValue = mDefaultValue;}
         virtual string                              getTypeName() const;
         T                                           getValue() const                            {return (T) (*mValue);}
-        string                                      getValueAsString() const;
+
         string                                      getComment()                                {return mComment;}
 
         void*                                       getValueHandle()                            {return mValue;}
@@ -37,20 +37,19 @@ class Property : public BaseProperty
 //                                                    operator T&();
         T                                           operator+(const T& a);
         void                                        operator+=(const T& val);
-        T&                                          operator=(const T& a);
+//        T&                                          operator=(const T& a);
 
         bool                                        operator==(const T& val)                    {return (*mValue) == val;}
 
-        friend                                      std::ostream& operator<<(ostream& stream, const Property<T>& val)
-                                                    {
-                                                        stream << val.getValueAsString();
-                                                        return stream;
-                                                    }
+//        friend                                      std::ostream& operator<<(ostream& stream, const Property<T>& val)
+//                                                    {
+//                                                        stream << val.getValueAsString();
+//                                                        return stream;
+//                                                    }
 
-        string                                      getLabel()                                  {return mKey;}
-        void                                        setLabel(const string& lbl)                 {mKey = lbl;}
+
 //        string                                      getFormattedStr()                           {return getFormattedParStr(mKey, getValue());}
-        string                                      getINIRecord();
+
         const char*                                 c_str() const;
 
                                                     //The setup function return a reference to the object.
@@ -64,8 +63,7 @@ class Property : public BaseProperty
                                                         return *this;
                                                     }
 
-        bool                                        read(IniFile* iniFile,  const string& section);
-        bool                                        write(IniFile* iniFile, const string& section);
+
         bool                                        assignValueFromString(const string& val);
         void                                        applyModification();
 
@@ -99,7 +97,7 @@ void Property<T>::applyModification()
 template<class T>
 const char* Property<T>::c_str() const
 {
-    string tmp = getValueAsString();
+    string tmp("NONO");// = getValueAsString();
     return tmp.c_str();
 }
 
@@ -116,26 +114,26 @@ void Property<T>::operator += (const T& val)
     (*mValue) += (T) val;
 }
 
-template<class T>
-string Property<T>::getValueAsString() const
-{
-    T val = getValue();
-    return dsl::toString(val);
-}
+//template<class T>
+//string Property<T>::getValueAsString() const
+//{
+//    T val = getValue();
+//    return dsl::toString(val);
+//}
+//
+//
+//template<class T> inline
+//string Property<T>::getINIRecord()
+//{
+//    return string(mKey + "=" + dsl::toString((T) getValue()));
+//}
 
-
-template<class T> inline
-string Property<T>::getINIRecord()
-{
-    return string(mKey + "=" + dsl::toString((T) getValue()));
-}
-
-template<class T>
-T& Property<T>::operator=(const T& rhs)
-{
-    (*mValue) = rhs;
-    return (*mValue);
-}
+//template<class T>
+//T& Property<T>::operator=(const T& rhs)
+//{
+//    (*mValue) = rhs;
+//    return (*mValue);
+//}
 
 //======================== SPECIALIZATIONS
 //------------- bool
