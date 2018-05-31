@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7DDCCBAE-634B-4D6B-B778-0190C2E6ECED}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PassToPython.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="dslPythonPlugins">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="PassToPython">
+        <MSBuild Projects="PassToPython.cbproj"/>
+    </Target>
+    <Target Name="PassToPython:Clean">
+        <MSBuild Projects="PassToPython.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PassToPython:Make">
+        <MSBuild Projects="PassToPython.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="dslPythonPlugins;PassToPython"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="dslPythonPlugins:Clean;PassToPython:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="dslPythonPlugins:Make;PassToPython:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

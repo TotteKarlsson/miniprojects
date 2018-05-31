@@ -13,6 +13,4 @@ class MyClass
     private:
         string          label;
 };
-
-
 #endif
