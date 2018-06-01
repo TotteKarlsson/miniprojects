@@ -2,12 +2,12 @@
 #include <iostream>
 #include <sstream>
 #include "MyClass.h"
-
+#include "swigpyrun.h"
 using namespace std;
 
 int main()
 {
-    MyClass obj("In C++");
+    MyClass obj("Made in C++");
     cout << "Object label: \"" << obj.getLabel() << "\"" << endl;
 
     //Now setup the Python interperter and call the execute function in the
@@ -75,7 +75,8 @@ int main()
         PyObject* pObj(NULL);
 
         //THIS QUESTION IS ABOUT HOW TO DO THIS
-        pObj = PyLong_FromLong((long) &obj);
+        pObj = SWIG_NewPointerObj((void*)&obj, SWIG_TypeQuery("_p_MyClass"),  0 );
+
 		//pObj = Py_BuildValue("O", obj);
         /* pValue reference stolen here: */
         PyTuple_SetItem(pArgs, 0, pObj);
