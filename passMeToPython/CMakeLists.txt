@@ -32,6 +32,9 @@ SWIG_LINK_LIBRARIES (${PyModule} ${PYTHON_LIB_FOLDER}/Python37_CG.lib    )
 # Get the python site packages directory by invoking python
 execute_process(COMMAND python -c "import site; print(site.getsitepackages()[0])" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 message("PYTHON_SITE_PACKAGES = ${PYTHON_SITE_PACKAGES}")
+execute_process(COMMAND swig -python -external-runtime ${PyModule}.h)
+
+# Generate and install swig header file for C++
 
 install(
     TARGETS _${PyModule}
@@ -40,4 +43,9 @@ install(
 install(
     FILES         ${CMAKE_CURRENT_BINARY_DIR}/${PyModule}.py 
     DESTINATION   ${PYTHON_SITE_PACKAGES}
+)
+
+install(
+    FILES         ${CMAKE_CURRENT_BINARY_DIR}/${PyModule}.h 
+    DESTINATION   include
 )

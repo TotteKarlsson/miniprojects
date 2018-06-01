@@ -90,6 +90,7 @@ int main()
         }
     }
 
+    Py_Finalize();
 	return 0;
 }
 
